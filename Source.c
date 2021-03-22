@@ -16,6 +16,8 @@ void FillListFromBinFile(FILE* fBinInputFile) {
     fclose(fBinInputFile);
 }
 
+//--------------------------------------------------------------------------------
+
 // Open .bin file with students list, returns pointer to opened file
 FILE* OpenFile() {
     FILE* fBinInputFile = NULL;
@@ -27,6 +29,8 @@ FILE* OpenFile() {
     return fBinInputFile;
 }
 
+//--------------------------------------------------------------------------------
+
 //Free dinamic memorry created for list elements
 void FreeList(sStd* psHead) {
     sStd* psElement = psHead;
@@ -37,6 +41,8 @@ void FreeList(sStd* psHead) {
         psElement = psHead;
     }
 }
+
+//--------------------------------------------------------------------------------
 
 // Print list of students starting from psHead pointer
 void PrintList(sStd* psHead) {
@@ -60,6 +66,8 @@ void PrintList(sStd* psHead) {
     puts("");
 }
 
+//--------------------------------------------------------------------------------
+
 // Reads new student data inputed by user from keybord, returns pointer on new student structure
 sStd* InputNewStudent() {
     sStd* add_psElement = (sStd*)malloc(sizeof(sStd));
@@ -67,7 +75,8 @@ sStd* InputNewStudent() {
 
     scanf("%s", add_psElement->Data.sSurname);
     scanf("%s", add_psElement->Data.sName);
-    scanf("%d.%d.%d", &add_psElement->Data.anDate[0], &add_psElement->Data.anDate[1], &add_psElement->Data.anDate[2]);
+    scanf("%d.%d.%d", &add_psElement->Data.anDate[0],//
+        &add_psElement->Data.anDate[1], &add_psElement->Data.anDate[2]);
     
     for (int i = 0; i < MARKS_NUMBER; i++) {
         scanf("%d", &add_psElement->Data.anMark[i]);
@@ -75,6 +84,8 @@ sStd* InputNewStudent() {
     
     return add_psElement;
 }
+
+//--------------------------------------------------------------------------------
 
 //Read one student data from .bin file returns readed element structure pointer
 sStd* GetNextStudentFromFile(FILE* fBinInputFile) {
@@ -99,6 +110,8 @@ sStd* GetNextStudentFromFile(FILE* fBinInputFile) {
     return psElement;
 }
 
+//--------------------------------------------------------------------------------
+
 // Add student structure to the tail of the list, returns pointer to tail
 sStd* AddStudentToTail(sStd* psElement) {
     if (psHead == NULL) {
@@ -112,6 +125,8 @@ sStd* AddStudentToTail(sStd* psElement) {
     g_counter++;
     return psTail;
 }
+
+//--------------------------------------------------------------------------------
 
 // Include new readed from keybord student to the sorted list
 int IncludeStudentToList(sStd** ppsHead, sStd* add_psElement) {
@@ -161,6 +176,8 @@ int IncludeStudentToList(sStd** ppsHead, sStd* add_psElement) {
     }
 }
 
+//--------------------------------------------------------------------------------
+
 //Deletes students with marks lower than MIN_RATE from list
 sStd* DeleteStudents(sStd* psHead) {
     sStd* psElement = NULL;
@@ -193,6 +210,8 @@ sStd* DeleteStudents(sStd* psHead) {
     return psHead;
 }
 
+//--------------------------------------------------------------------------------
+
 //Deleates tail element from the list 
 void DeleteLastpsElement(sStd* psHead) {
     sStd* psElement = NULL;
@@ -207,6 +226,8 @@ void DeleteLastpsElement(sStd* psHead) {
         }
     }
 }
+
+//--------------------------------------------------------------------------------
 
 // Check if included student must become the head of the list, returns 1 if yes, 0 if no
 int CheckForNewHead(sStd** psHead, sStd* NewpsElement) {
